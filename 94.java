@@ -15,17 +15,37 @@
  */
 //Inorder (Left, Root, Right)
 
+//USING STACK 
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> result=new ArrayList<>();
-        Traversal(root, result);
-        return result;        
-    }
-    private void Traversal(TreeNode node, List<Integer>result){
-        if (node == null) return;
+        List<Integer> res=new ArrayList<>();
+        Stack<TreeNode> stack=new Stack<>();
 
-        Traversal(node.left, result);
-        result.add(node.val);
-        Traversal(node.right, result);
+        while(root!=null || !stack.isEmpty()){
+            while(root!=null){
+                stack.push(root);
+                root=root.left;
+            }
+            root=stack.pop();
+            res.add(root.val);
+            root=root.right;
+        }
+        return res;
     }
 }
+
+
+// class Solution {
+//     public List<Integer> inorderTraversal(TreeNode root) {
+//         List<Integer> result=new ArrayList<>();
+//         Traversal(root, result);
+//         return result;        
+//     }
+//     private void Traversal(TreeNode node, List<Integer>result){
+//         if (node == null) return;
+
+//         Traversal(node.left, result);
+//         result.add(node.val);
+//         Traversal(node.right, result);
+//     }
+// }
